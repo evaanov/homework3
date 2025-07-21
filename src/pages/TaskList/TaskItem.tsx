@@ -1,7 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { Link } from '@mui/material';
 import type { Task } from "../tasks";
-import "./TaskItem.css"
 import { Box, Button, Paper, Typography } from "@mui/material";
 
 const TaskItem: React.FC<Task> = (task: Task) => { 

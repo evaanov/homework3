@@ -1,14 +1,11 @@
-import { useState } from 'react'
 import './App.css'
 import TaskList from './pages/TaskList/TaskList'
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import TaskDetail from './pages/TaskDetails/TaskDetails'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { purple, grey } from '@mui/material/colors';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   const theme = createTheme({
     palette: {
       mode: 'dark',
