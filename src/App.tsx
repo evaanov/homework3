@@ -8,6 +8,7 @@ import { purple, grey } from '@mui/material/colors';
 import { store } from './store/store';
 import TaskCreation from './pages/TaskCreation';
 import { initializeTasks } from './utils/storage';
+import { useEffect } from 'react';
 
 function App() {
   const theme = createTheme({
@@ -48,7 +49,9 @@ function App() {
     },
   });
 
-  initializeTasks()
+  useEffect(() => { 
+    initializeTasks()
+  }, [])
   
 
   return (
