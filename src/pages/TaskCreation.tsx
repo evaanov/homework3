@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   Box,
@@ -13,14 +13,12 @@ import {
   Container,
   CircularProgress,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../store/store";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../store/store";
 import { createTask } from "../store/tasksSlice";
 
 const TaskCreation = () => {
-  const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<AppDispatch>();
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const navigate = useNavigate();
 
   const [name, setName] = useState<string>("");

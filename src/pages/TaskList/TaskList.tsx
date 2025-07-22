@@ -13,7 +13,6 @@ import {
   MenuItem,
   type SelectChangeEvent,
   Button,
-  IconButton,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { type RootState } from '../../store/store'
@@ -29,7 +28,7 @@ function TaskList() {
   const [tagFilter, setTagFilter] = useState<string>('')
 
   const handleStatusChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newStatus: string | null
   ) => {
     setStatusFilter(newStatus)
