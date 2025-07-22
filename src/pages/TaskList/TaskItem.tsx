@@ -1,8 +1,16 @@
 import { Link as RouterLink } from 'react-router-dom';
 import type { Task } from "../tasks";
 import { Box, Button, Paper, Typography } from "@mui/material";
+import { deleteTask } from '../../store/tasksSlice';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from '../../store/store';
 
 const TaskItem: React.FC<Task> = (task: Task) => { 
+    const dispatch = useDispatch<AppDispatch>();
+
+    const handleDeleteTask = () => { 
+        dispatch(deleteTask(task.id))
+    } 
     
     const statusElement = () => {
         switch(task.status) {
@@ -82,7 +90,7 @@ const TaskItem: React.FC<Task> = (task: Task) => {
                             }}>
                                 Редактировать
                             </Button>
-                        <Button variant="contained" sx={{ bgcolor: 'black' }}>Удалить</Button>
+                        <Button variant="contained" onClick={handleDeleteTask} sx={{ bgcolor: 'black' }}>Удалить</Button>
                     </Box>
                 </Box>
             </Paper>

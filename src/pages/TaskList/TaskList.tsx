@@ -13,12 +13,17 @@ import {
   MenuItem,
   type SelectChangeEvent,
   Button,
+  IconButton,
 } from '@mui/material';
-import { useTasks } from '../../context/TaskContext';
+import AddIcon from '@mui/icons-material/Add';
+import { type RootState } from '../../store/store'
 import TaskItem from './TaskItem';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function TaskList() {
-  const { tasks } = useTasks()
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+
   const [statusFilter, setStatusFilter] = useState<string | null>(null)
   const [priorityFilter, setPriorityFilter] = useState<string>('')
   const [tagFilter, setTagFilter] = useState<string>('')
@@ -139,6 +144,14 @@ function TaskList() {
             ))}
           </Select>
         </FormControl>
+
+        <Button component={Link} to={'/task/new'} color='primary' sx={{
+          color: 'white', 
+          ":hover": { color: 'white' },
+          my: 'auto'
+        }}>
+            <AddIcon  />
+        </Button>
 
         {(statusFilter || priorityFilter || tagFilter) && (
           <Button

@@ -1,9 +1,13 @@
 import './App.css'
 import TaskList from './pages/TaskList/TaskList'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import TaskDetail from './pages/TaskDetails/TaskDetails'
+import { Provider } from 'react-redux';
+import TaskForm from './pages/TaskForm/TaskForm'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { purple, grey } from '@mui/material/colors';
+import { store } from './store/store';
+import TaskCreation from './pages/TaskCreation';
+import { initializeTasks } from './utils/storage';
 
 function App() {
   const theme = createTheme({
@@ -43,15 +47,20 @@ function App() {
       },
     },
   });
+
+  initializeTasks()
   
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path='/' element={<TaskList />} />
-        <Route path='/task/:id' element={<TaskDetail />} />
-      </Routes>
+        <Provider store={store}>
+          <Routes>
+            <Route path='/' element={<TaskList />} />
+            <Route path='/task/:id' element={<TaskForm/>} />
+            <Route path='/task/new' element={<TaskCreation />} />
+          </Routes>
+        </Provider>
       </ThemeProvider>
     </BrowserRouter>
   )

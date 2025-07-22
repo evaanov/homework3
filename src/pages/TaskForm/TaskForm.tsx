@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useTasks } from "../../context/TaskContext";
 import { useState, useEffect } from "react";
 import type { Task } from "../tasks";
 import {
@@ -15,13 +14,17 @@ import {
   Container,
   CircularProgress,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../store/store";
+import { updateTask } from "../../store/tasksSlice";
 
-const TaskDetail = () => {
+const TaskForm = () => {
   const { id } = useParams<{ id: string }>();
-  const { tasks, updateTask } = useTasks();
+  const dispatch = useDispatch<AppDispatch>();
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const navigate = useNavigate();
 
-  const task = tasks.find((t: Task) => t.id === Number(id));
+  const task = tasks.find((t: Task) => t.id === id);
 
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string | undefined>("");
@@ -49,11 +52,14 @@ const TaskDetail = () => {
       </Container>
     );
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await updateTask(task.id, { name, description, status, priority, tag });
+      dispatch(updateTask({
+        id: task.id,
+        updatedTask: { name, description, status, priority, tag }
+      }))
       navigate("/");
     } finally {
       setIsSubmitting(false);
@@ -187,4 +193,4 @@ const TaskDetail = () => {
   );
 };
 
-export default TaskDetail;
+export default TaskForm;
