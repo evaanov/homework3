@@ -8,7 +8,7 @@ export const mockTasks: Task[] = [
       tag: 'Bug',
       status: 'Done',
       priority: 'High',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '2',
@@ -17,7 +17,7 @@ export const mockTasks: Task[] = [
       tag: 'Feature',
       status: 'To Do',
       priority: 'Medium',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '3',
@@ -26,7 +26,7 @@ export const mockTasks: Task[] = [
       tag: 'Documentation',
       status: 'In Progress',
       priority: 'Low',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '4',
@@ -35,7 +35,7 @@ export const mockTasks: Task[] = [
       tag: 'Refactor',
       status: 'To Do',
       priority: 'Medium',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '5',
@@ -44,7 +44,7 @@ export const mockTasks: Task[] = [
       tag: 'Test',
       status: 'In Progress',
       priority: 'High',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '6',
@@ -53,7 +53,7 @@ export const mockTasks: Task[] = [
       tag: 'Bug',
       status: 'Done',
       priority: 'High',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '7',
@@ -62,7 +62,7 @@ export const mockTasks: Task[] = [
       tag: 'Feature',
       status: 'To Do',
       priority: 'Medium',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '8',
@@ -71,7 +71,7 @@ export const mockTasks: Task[] = [
       tag: 'Documentation',
       status: 'In Progress',
       priority: 'Low',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '9',
@@ -80,7 +80,7 @@ export const mockTasks: Task[] = [
       tag: 'Refactor',
       status: 'To Do',
       priority: 'Medium',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '10',
@@ -89,7 +89,7 @@ export const mockTasks: Task[] = [
       tag: 'Test',
       status: 'In Progress',
       priority: 'High',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },{
       id: '11',
       name: 'UI Bug',
@@ -97,7 +97,7 @@ export const mockTasks: Task[] = [
       tag: 'Bug',
       status: 'Done',
       priority: 'High',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '12',
@@ -106,7 +106,7 @@ export const mockTasks: Task[] = [
       tag: 'Feature',
       status: 'To Do',
       priority: 'Medium',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '13',
@@ -115,7 +115,7 @@ export const mockTasks: Task[] = [
       tag: 'Documentation',
       status: 'In Progress',
       priority: 'Low',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '14',
@@ -124,7 +124,7 @@ export const mockTasks: Task[] = [
       tag: 'Refactor',
       status: 'To Do',
       priority: 'Medium',
-      date: '2025-07-25'
+      date: '2025-07-25',
   },
   {
       id: '15',
@@ -133,6 +133,6 @@ export const mockTasks: Task[] = [
       tag: 'Test',
       status: 'In Progress',
       priority: 'High',
-      date: '2025-07-25'
+      date: '2025-07-25',
   }
 ]
