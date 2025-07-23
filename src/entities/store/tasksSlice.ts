@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction, nanoid } from '@reduxjs/toolkit';
-import { type Task } from '../entities/tasks';
-import { loadTasks, uploadTasks } from '../entities/utils/storage';
+import { type Task } from '../tasks';
+import { loadTasks, uploadTasks } from '../utils/storage';
 
 interface TasksState {
   tasks: Task[];

@@ -1,9 +1,9 @@
 import { Link as RouterLink } from 'react-router-dom';
-import type { Task } from "../tasks";
+import type { Task } from "../entities/tasks";
 import { Box, Button, Paper, Typography } from "@mui/material";
-import { deleteTask } from '../../store/tasksSlice';
+import { deleteTask } from '../store/tasksSlice';
 import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '../../store/store';
+import type { AppDispatch } from '../entities/store/store';
 
 const TaskItem: React.FC<Task> = (task: Task) => { 
     const dispatch = useDispatch<AppDispatch>();

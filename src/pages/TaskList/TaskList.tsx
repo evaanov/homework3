@@ -15,8 +15,8 @@ import {
   Button,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { type RootState } from '../../store/store'
-import TaskItem from './TaskItem';
+import { type RootState } from '../../entities/store/store'
+import TaskItem from '../../widgets/TaskItem';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 

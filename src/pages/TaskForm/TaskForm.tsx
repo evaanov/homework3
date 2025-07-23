@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import type { Task } from "../tasks";
+import type { Task } from "../../entities/tasks";
 import {
   Box,
   Typography,
@@ -15,7 +15,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../../store/store";
+import type { AppDispatch, RootState } from "../../entities/store/store";
 import { updateTask, createTask } from "../../store/tasksSlice";
 
 const TaskForm = () => {

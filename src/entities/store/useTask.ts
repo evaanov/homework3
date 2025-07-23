@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { type RootState, type AppDispatch } from './store';
 import { useCallback } from 'react';
 import { createTask, updateTask, deleteTask } from './tasksSlice';
-import type { Task } from '../pages/tasks';
+import type { Task } from '../tasks';
 
 
 export const useTasks = () => {

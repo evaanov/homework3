@@ -1,12 +1,12 @@
 import './App.css'
-import TaskList from './pages/TaskList/TaskList'
+import TaskList from '../pages/TaskList/TaskList'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux';
-import TaskForm from './pages/TaskForm/TaskForm'
+import TaskForm from '../pages/TaskForm/TaskForm'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { purple, grey } from '@mui/material/colors';
-import { store } from './store/store';
-import { initializeTasks } from './utils/storage';
+import { store } from '../entities/store/store';
+import { initializeTasks } from '../entities/utils/storage';
 import { useEffect } from 'react';
 
 function App() {

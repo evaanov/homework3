@@ -1,4 +1,4 @@
-import type { Task } from "../pages/tasks"
+import type { Task } from "../tasks"
 import { mockTasks } from "./mocks";
 
 const TASK_KEY = 'tasks'
