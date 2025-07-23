@@ -4,10 +4,12 @@ import { mockTasks } from "./mocks";
 const TASK_KEY = 'tasks'
 
 export const initializeTasks = () => {
-    if (!localStorage.getItem(TASK_KEY)) {
+    if (!localStorage.getItem(TASK_KEY) && typeof window !== 'undefined') {
       localStorage.setItem(TASK_KEY, JSON.stringify(mockTasks));
     }
   };
+
+initializeTasks()
 
 export const loadTasks = (): Task[] => { 
     try {

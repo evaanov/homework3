@@ -43,6 +43,7 @@ const TaskForm = () => {
       setPriority(task.priority);
       setTag(task.tag);
       setDate(task.date)
+      console.log(task)
     }
   }, [task]);
 
