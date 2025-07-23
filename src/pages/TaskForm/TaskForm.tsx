@@ -16,10 +16,11 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../store/store";
-import { updateTask } from "../../store/tasksSlice";
+import { updateTask, createTask } from "../../store/tasksSlice";
 
 const TaskForm = () => {
   const { id } = useParams<{ id: string }>();
+  const [state, setState] = useState<string>(id ? 'editing' : 'creation')
   const dispatch = useDispatch<AppDispatch>();
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const TaskForm = () => {
     }
   }, [task]);
 
-  if (!task)
+  if (!task && state === 'editing')
     return (
       <Container maxWidth="md" sx={{ mt: 4 }}>
         <Typography variant="h4" color="error" gutterBottom>
@@ -55,14 +56,25 @@ const TaskForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    try {
-      dispatch(updateTask({
-        id: task.id,
-        updatedTask: { name, description, status, priority, tag }
-      }))
-      navigate("/");
-    } finally {
-      setIsSubmitting(false);
+    if (state === 'editing') { 
+      try {
+        if (task) { 
+          dispatch(updateTask({
+            id: task.id,
+            updatedTask: { name, description, status, priority, tag }
+          }))
+        }
+        navigate("/");
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      try {
+        dispatch(createTask({name, description, status, priority, tag}))
+        navigate("/");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 

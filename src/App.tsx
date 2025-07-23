@@ -6,7 +6,6 @@ import TaskForm from './pages/TaskForm/TaskForm'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { purple, grey } from '@mui/material/colors';
 import { store } from './store/store';
-import TaskCreation from './pages/TaskCreation';
 import { initializeTasks } from './utils/storage';
 import { useEffect } from 'react';
 
@@ -61,7 +60,7 @@ function App() {
           <Routes>
             <Route path='/' element={<TaskList />} />
             <Route path='/task/:id' element={<TaskForm/>} />
-            <Route path='/task/new' element={<TaskCreation />} />
+            <Route path='/task/new' element={<TaskForm />} />
           </Routes>
         </Provider>
       </ThemeProvider>
