@@ -81,7 +81,7 @@ const TaskItem: React.FC<Task> = (task: Task) => {
                                     {task.tag}
                                 </Typography>
                             </Box>
-                            <Typography sx={{ color: 'white', textAlign: 'left', mt: 2 }}>Дата создани: {task.date}</Typography>
+                            <Typography sx={{ color: 'white', textAlign: 'left', mt: 2 }}>{`Дата создани: ${task.date}`}</Typography>
                         </Box>
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "row", gap: 1, justifyContent: "flex-end" }}>
