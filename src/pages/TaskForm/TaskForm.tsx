@@ -20,7 +20,7 @@ import { updateTask, createTask } from "../../store/tasksSlice";
 
 const TaskForm = () => {
   const { id } = useParams<{ id: string }>();
-  const [state, setState] = useState<string>(id ? 'editing' : 'creation')
+  const [state] = useState<string>(id ? 'editing' : 'creation')
   const dispatch = useDispatch<AppDispatch>();
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const navigate = useNavigate();
