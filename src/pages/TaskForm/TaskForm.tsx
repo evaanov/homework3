@@ -16,22 +16,23 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../entities/store/store";
-import { updateTask, createTask } from "../../store/tasksSlice";
+import { updateTask, createTask } from "../../entities/store/tasksSlice";
 
 const TaskForm = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
   const [state] = useState<string>(id ? 'editing' : 'creation')
-  const dispatch = useDispatch<AppDispatch>();
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
-  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>()
+  const tasks = useSelector((state: RootState) => state.tasks.tasks)
+  const navigate = useNavigate()
 
-  const task = tasks.find((t: Task) => t.id === id);
+  const task = tasks.find((t: Task) => t.id === id)
 
-  const [name, setName] = useState<string>("");
-  const [description, setDescription] = useState<string | undefined>("");
-  const [status, setStatus] = useState<string>("");
-  const [priority, setPriority] = useState<string>("");
-  const [tag, setTag] = useState<string>("");
+  const [name, setName] = useState<string>("")
+  const [description, setDescription] = useState<string | undefined>("")
+  const [status, setStatus] = useState<string>("")
+  const [priority, setPriority] = useState<string>("")
+  const [tag, setTag] = useState<string>("")
+  const [date, setDate] = useState<string>("")
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const TaskForm = () => {
       setStatus(task.status);
       setPriority(task.priority);
       setTag(task.tag);
+      setDate(task.date)
     }
   }, [task]);
 
@@ -61,7 +63,7 @@ const TaskForm = () => {
         if (task) { 
           dispatch(updateTask({
             id: task.id,
-            updatedTask: { name, description, status, priority, tag }
+            updatedTask: { name, description, status, priority, tag, date }
           }))
         }
         navigate("/");
@@ -70,7 +72,7 @@ const TaskForm = () => {
       }
     } else {
       try {
-        dispatch(createTask({name, description, status, priority, tag}))
+        dispatch(createTask({name, description, status, priority, tag, date}))
         navigate("/");
       } finally {
         setIsSubmitting(false);
@@ -178,6 +180,19 @@ const TaskForm = () => {
               ))}
             </Select>
           </FormControl>
+
+          <TextField
+            label="Дата"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value as string)}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+            required
+            margin="normal"
+          />
 
           <Box sx={{ mt: 3, display: "flex", justifyContent: "flex-end", gap: 2 }}>
             <Button

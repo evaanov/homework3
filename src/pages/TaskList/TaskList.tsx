@@ -214,6 +214,7 @@ function TaskList() {
               tag={task.tag}
               status={task.status}
               priority={task.priority}
+              date={task.date}
             />
           ))
         ) : (

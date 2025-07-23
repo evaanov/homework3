@@ -1,7 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom';
 import type { Task } from "../entities/tasks";
 import { Box, Button, Paper, Typography } from "@mui/material";
-import { deleteTask } from '../store/tasksSlice';
+import { deleteTask } from '../entities/store/tasksSlice';
 import { useDispatch } from 'react-redux';
 import type { AppDispatch } from '../entities/store/store';
 
@@ -81,6 +81,7 @@ const TaskItem: React.FC<Task> = (task: Task) => {
                                     {task.tag}
                                 </Typography>
                             </Box>
+                            <Typography sx={{ color: 'white', textAlign: 'left', mt: 2 }}>Дата создани: {task.date}</Typography>
                         </Box>
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "row", gap: 1, justifyContent: "flex-end" }}>

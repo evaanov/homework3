@@ -1,5 +1,7 @@
 import type { Task } from "../tasks";
 
+const currentDate = new Date().toISOString().split('T')[0]
+
 export const mockTasks: Task[] = [
     {
       id: '1',
@@ -7,7 +9,8 @@ export const mockTasks: Task[] = [
       description: 'some ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bugsome ui bug',
       tag: 'Bug',
       status: 'Done',
-      priority: 'High'
+      priority: 'High',
+      date: currentDate
   },
   {
       id: '2',
@@ -15,7 +18,8 @@ export const mockTasks: Task[] = [
       description: 'Need to add new button',
       tag: 'Feature',
       status: 'To Do',
-      priority: 'Medium'
+      priority: 'Medium',
+      date: currentDate
   },
   {
       id: '3',
@@ -23,7 +27,8 @@ export const mockTasks: Task[] = [
       description: 'write doc for new class',
       tag: 'Documentation',
       status: 'In Progress',
-      priority: 'Low'
+      priority: 'Low',
+      date: currentDate
   },
   {
       id: '4',
@@ -31,7 +36,8 @@ export const mockTasks: Task[] = [
       description: 'refactor class',
       tag: 'Refactor',
       status: 'To Do',
-      priority: 'Medium'
+      priority: 'Medium',
+      date: currentDate
   },
   {
       id: '5',
@@ -39,7 +45,8 @@ export const mockTasks: Task[] = [
       description: 'Need to test UI',
       tag: 'Test',
       status: 'In Progress',
-      priority: 'High'
+      priority: 'High',
+      date: currentDate
   },
   {
       id: '6',
@@ -47,7 +54,8 @@ export const mockTasks: Task[] = [
       description: 'some ui bug',
       tag: 'Bug',
       status: 'Done',
-      priority: 'High'
+      priority: 'High',
+      date: currentDate
   },
   {
       id: '7',
@@ -55,7 +63,8 @@ export const mockTasks: Task[] = [
       description: 'Need to add new button',
       tag: 'Feature',
       status: 'To Do',
-      priority: 'Medium'
+      priority: 'Medium',
+      date: currentDate
   },
   {
       id: '8',
@@ -63,7 +72,8 @@ export const mockTasks: Task[] = [
       description: 'write doc for new class',
       tag: 'Documentation',
       status: 'In Progress',
-      priority: 'Low'
+      priority: 'Low',
+      date: currentDate
   },
   {
       id: '9',
@@ -71,7 +81,8 @@ export const mockTasks: Task[] = [
       description: 'refactor class',
       tag: 'Refactor',
       status: 'To Do',
-      priority: 'Medium'
+      priority: 'Medium',
+      date: currentDate
   },
   {
       id: '10',
@@ -79,14 +90,16 @@ export const mockTasks: Task[] = [
       description: 'Need to test UI',
       tag: 'Test',
       status: 'In Progress',
-      priority: 'High'
+      priority: 'High',
+      date:currentDate
   },{
       id: '11',
       name: 'UI Bug',
       description: 'some ui bug',
       tag: 'Bug',
       status: 'Done',
-      priority: 'High'
+      priority: 'High',
+      date: currentDate
   },
   {
       id: '12',
@@ -94,7 +107,8 @@ export const mockTasks: Task[] = [
       description: 'Need to add new button',
       tag: 'Feature',
       status: 'To Do',
-      priority: 'Medium'
+      priority: 'Medium',
+      date: currentDate
   },
   {
       id: '13',
@@ -102,7 +116,8 @@ export const mockTasks: Task[] = [
       description: 'write doc for new class',
       tag: 'Documentation',
       status: 'In Progress',
-      priority: 'Low'
+      priority: 'Low',
+      date: currentDate
   },
   {
       id: '14',
@@ -110,7 +125,8 @@ export const mockTasks: Task[] = [
       description: 'refactor class',
       tag: 'Refactor',
       status: 'To Do',
-      priority: 'Medium'
+      priority: 'Medium',
+      date: currentDate
   },
   {
       id: '15',
@@ -118,6 +134,7 @@ export const mockTasks: Task[] = [
       description: 'Need to test UI',
       tag: 'Test',
       status: 'In Progress',
-      priority: 'High'
+      priority: 'High',
+      date: currentDate
   }
 ]

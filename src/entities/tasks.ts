@@ -5,4 +5,5 @@ export type Task = {
     tag: string,
     status: string,
     priority: string,
+    date: string
 }
