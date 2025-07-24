@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { type RootState, type AppDispatch } from './store';
+import { type RootState, type AppDispatch } from '@store/store';
 import { useCallback } from 'react';
 import { createTask, updateTask, deleteTask } from './tasksSlice';
 import type { Task } from '../tasks';

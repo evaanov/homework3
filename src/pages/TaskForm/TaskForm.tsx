@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import type { Task } from "../../entities/tasks";
+import type { Task } from "@entities/tasks";
 import {
   Box,
   Typography,
@@ -15,8 +15,8 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../../entities/store/store";
-import { updateTask, createTask } from "../../entities/store/tasksSlice";
+import type { AppDispatch, RootState } from "@entities/store/store";
+import { updateTask, createTask } from "@entities/store/tasksSlice";
 
 const TaskForm = () => {
   const { id } = useParams<{ id: string }>()

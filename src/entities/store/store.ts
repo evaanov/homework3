@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import tasksReducer from './tasksSlice';
-import { loadTasks } from '../utils/storage';
+import { loadTasks } from '@storage';
 
 const preloadedState = {
   tasks: {
