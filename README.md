@@ -4,6 +4,6 @@
 
 
 # Технологии
-React, TypeScript, Material UI, Vite, ReduxTK, ESlint(не настроен)
+React, TypeScript, Material UI, Vite, ReduxTK, ESlint(не настроен), Fake API
 
 **Архитектура** - FSD(ну по крайней мере я пытался, получилось не очень :(( )

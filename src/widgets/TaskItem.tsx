@@ -1,15 +1,13 @@
 import { Link as RouterLink } from 'react-router-dom';
 import type { Task } from "@entities/tasks";
 import { Box, Button, Paper, Typography } from "@mui/material";
-import { deleteTask } from '@entities/store/tasksSlice';
-import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '@entities/store/store';
+import { useTasks } from '@entities/store/useTask';
 
 const TaskItem: React.FC<Task> = (task: Task) => { 
-    const dispatch = useDispatch<AppDispatch>();
-
-    const handleDeleteTask = () => { 
-        dispatch(deleteTask(task.id))
+    const { deleteTask } = useTasks();
+    
+    const handleDeleteTask = async () => { 
+        await deleteTask(task.id);
     } 
     
     const statusElement = () => {
@@ -99,4 +97,4 @@ const TaskItem: React.FC<Task> = (task: Task) => {
     )
 }
 
-export default TaskItem
+export default TaskItem;

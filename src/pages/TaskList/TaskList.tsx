@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
@@ -13,44 +13,47 @@ import {
   MenuItem,
   type SelectChangeEvent,
   Button,
+  CircularProgress,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { type RootState } from '@entities/store/store'
+import { useTasks } from '@entities/store/useTask';
 import TaskItem from '@widgets/TaskItem';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function TaskList() {
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const { tasks, loading, error, fetchTasks } = useTasks();
+  const [statusFilter, setStatusFilter] = useState<string | null>(null);
+  const [priorityFilter, setPriorityFilter] = useState<string>('');
+  const [tagFilter, setTagFilter] = useState<string>('');
 
-  const [statusFilter, setStatusFilter] = useState<string | null>(null)
-  const [priorityFilter, setPriorityFilter] = useState<string>('')
-  const [tagFilter, setTagFilter] = useState<string>('')
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
 
   const handleStatusChange = (
     _event: React.MouseEvent<HTMLElement>,
     newStatus: string | null
   ) => {
-    setStatusFilter(newStatus)
-  }
-
-  const handlePriorityChange = (event: SelectChangeEvent) => {
-    setPriorityFilter(event.target.value)
-  }
-
-  const handleTagChange = (event: SelectChangeEvent) => {
-    setTagFilter(event.target.value)
-  }
-
-  const resetFilters = () => {
-    setStatusFilter(null)
-    setPriorityFilter('')
-    setTagFilter('')
+    setStatusFilter(newStatus);
   };
 
-  const statuses = ['To Do', 'In Progress', 'Done']
-  const priorities = ['Low', 'Medium', 'High']
-  const tags = ['Bug', 'Feature', 'Documentation', 'Refactor', 'Test']
+  const handlePriorityChange = (event: SelectChangeEvent) => {
+    setPriorityFilter(event.target.value);
+  };
+
+  const handleTagChange = (event: SelectChangeEvent) => {
+    setTagFilter(event.target.value);
+  };
+
+  const resetFilters = () => {
+    setStatusFilter(null);
+    setPriorityFilter('');
+    setTagFilter('');
+  };
+
+  const statuses = ['To Do', 'In Progress', 'Done'];
+  const priorities = ['Low', 'Medium', 'High'];
+  const tags = ['Bug', 'Feature', 'Documentation', 'Refactor', 'Test'];
 
   const filteredTasks = tasks.filter(task => {
     return (
@@ -59,6 +62,22 @@ function TaskList() {
       (tagFilter === '' || task.tag === tagFilter)
     );
   });
+
+  if (loading) {
+    return (
+      <Container sx={{ my: 3, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+        <CircularProgress />
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container sx={{ my: 3 }}>
+        <Typography color="error">{error}</Typography>
+      </Container>
+    );
+  }
 
   return (
     <Container sx={{ my: 3 }}>
@@ -76,15 +95,13 @@ function TaskList() {
           exclusive
           onChange={handleStatusChange}
           aria-label="Фильтр по статусу"
-          sx={{
-            flexWrap: 'wrap',
-          }}
+          sx={{ flexWrap: 'wrap' }}
         >
           {statuses.map(status => (
             <ToggleButton
               key={status}
               value={status}
-              size={ 'medium'}
+              size={'medium'}
               sx={{ minWidth: 100 }}
             >
               {status}
@@ -104,10 +121,7 @@ function TaskList() {
          }}
         alignItems={'flex-start'}
       >
-        <FormControl sx={{ width: {
-          xs: 1,
-          md: 200
-        } }}>
+        <FormControl sx={{ width: { xs: 1, md: 200 } }}>
           <InputLabel size={'medium'}>Приоритет</InputLabel>
           <Select
             value={priorityFilter}
@@ -124,10 +138,7 @@ function TaskList() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ width: {
-          xs: 1,
-          md: 200
-        } }}>
+        <FormControl sx={{ width: { xs: 1, md: 200 } }}>
           <InputLabel size={'medium'}>Тег</InputLabel>
           <Select
             value={tagFilter}
@@ -149,7 +160,7 @@ function TaskList() {
           ":hover": { color: 'white' },
           my: 'auto'
         }}>
-            <AddIcon  />
+            <AddIcon />
         </Button>
 
         {(statusFilter || priorityFilter || tagFilter) && (
@@ -157,10 +168,7 @@ function TaskList() {
             variant="outlined"
             onClick={resetFilters}
             size={'medium'}
-            sx={{ 
-              alignSelf: 'center',
-              mt: 0
-            }}
+            sx={{ alignSelf: 'center', mt: 0 }}
           >
             Сбросить
           </Button>

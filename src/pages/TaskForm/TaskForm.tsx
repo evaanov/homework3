@@ -14,15 +14,12 @@ import {
   Container,
   CircularProgress,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "@entities/store/store";
-import { updateTask, createTask } from "@entities/store/tasksSlice";
+import { useTasks } from "@entities/store/useTask";
 
 const TaskForm = () => {
   const { id } = useParams<{ id: string }>()
   const [state] = useState<string>(id ? 'editing' : 'creation')
-  const dispatch = useDispatch<AppDispatch>()
-  const tasks = useSelector((state: RootState) => state.tasks.tasks)
+  const { tasks, createTask, updateTask, error } = useTasks()
   const navigate = useNavigate()
 
   const task = tasks.find((t: Task) => t.id === id)
@@ -43,7 +40,6 @@ const TaskForm = () => {
       setPriority(task.priority);
       setTag(task.tag);
       setDate(task.date)
-      console.log(task)
     }
   }, [task]);
 
@@ -56,28 +52,20 @@ const TaskForm = () => {
       </Container>
     );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    if (state === 'editing') { 
-      try {
+    try {
+      if (state === 'editing') { 
         if (task) { 
-          dispatch(updateTask({
-            id: task.id,
-            updatedTask: { name, description, status, priority, tag, date }
-          }))
+          await updateTask(task.id, { name, description, status, priority, tag, date })
         }
-        navigate("/");
-      } finally {
-        setIsSubmitting(false);
+      } else {
+        await createTask({name, description, status, priority, tag, date})
       }
-    } else {
-      try {
-        dispatch(createTask({name, description, status, priority, tag, date}))
-        navigate("/");
-      } finally {
-        setIsSubmitting(false);
-      }
+      navigate("/");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -108,6 +96,12 @@ const TaskForm = () => {
           Панель редактирования задач
         </Typography>
 
+        {error && (
+          <Typography color="error" sx={{ mb: 2 }}>
+            {error}
+          </Typography>
+        )}
+
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <TextField
             label="Название задачи"
@@ -116,6 +110,7 @@ const TaskForm = () => {
             fullWidth
             required
             margin="normal"
+            disabled={isSubmitting}
           />
 
           <TextField
@@ -126,6 +121,7 @@ const TaskForm = () => {
             multiline
             rows={4}
             margin="normal"
+            disabled={isSubmitting}
           />
 
           <FormControl fullWidth margin="normal" required>
@@ -134,9 +130,8 @@ const TaskForm = () => {
               value={status}
               label="Статус"
               onChange={(e) => setStatus(e.target.value as string)}
-              sx={{
-                textAlign: "left"
-              }}
+              disabled={isSubmitting}
+              sx={{ textAlign: "left" }}
             >
               {statusOptions.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -152,9 +147,8 @@ const TaskForm = () => {
               value={priority}
               label="Приоритет"
               onChange={(e) => setPriority(e.target.value as string)}
-              sx={{
-                textAlign: "left"
-              }}
+              disabled={isSubmitting}
+              sx={{ textAlign: "left" }}
             >
               {priorityOptions.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -170,9 +164,8 @@ const TaskForm = () => {
               value={tag}
               label="Тег"
               onChange={(e) => setTag(e.target.value as string)}
-              sx={{
-                textAlign: "left"
-              }}
+              disabled={isSubmitting}
+              sx={{ textAlign: "left" }}
             >
               {tagOptions.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -187,12 +180,11 @@ const TaskForm = () => {
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value as string)}
-            InputLabelProps={{
-              shrink: true,
-            }}
+            InputLabelProps={{ shrink: true }}
             fullWidth
             required
             margin="normal"
+            disabled={isSubmitting}
           />
 
           <Box sx={{ mt: 3, display: "flex", justifyContent: "flex-end", gap: 2 }}>
@@ -200,9 +192,7 @@ const TaskForm = () => {
               variant="outlined"
               onClick={() => navigate("/")}
               disabled={isSubmitting}
-              sx={{
-                color: "white"
-              }}
+              sx={{ color: "white" }}
             >
               Отмена
             </Button>
